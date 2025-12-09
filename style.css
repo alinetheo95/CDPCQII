@@ -34,3 +34,88 @@ body {
     text-align: left;
     font-size: 2rem;
 }
+
+.image-section {
+    margin: 80px 0;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.fade-scroll-section {
+    position: relative;
+    height: 200vh; /* Reduced since only 2 layers */
+    margin: 80px 0;
+}
+
+.fade-layer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.fade-layer.active {
+    opacity: 1;
+}
+
+.layer-section {
+    margin: 80px 0;
+    width: 100%;
+}
+
+.layer-section img {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.gif-scroll-section {
+    position: relative;
+    height: 400vh;
+    margin: 80px 0;
+}
+
+.background-grid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.background-grid.active {
+    opacity: 1;
+}
+
+.gif-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%; /* Adjust this to make bigger/smaller */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gif-container.active {
+    opacity: 1;
+}
+
+.gif-layer {
+    width: 100%;
+    height: auto;
+    display: block;
+}
