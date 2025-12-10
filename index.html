@@ -37,7 +37,7 @@
             </div>
             
             <div class="gif-container">
-                <img src="L-systems.gif" class="gif-layer" data-video="2" alt="L-systems animation" />
+                <img src="l-systems.gif" class="gif-layer" data-video="2" alt="L-systems animation" />
             </div>
             
             <div class="gif-container">
@@ -56,7 +56,7 @@
             <img src="error detection.png" class="fade-layer-2" data-layer="3" alt="error detection" />
         </div>
 
-        <div class="subtitle-section">
+        <div class="header-section">
             <p>Outputs: Prototypes</p>
         </div>
 
@@ -68,12 +68,12 @@
             <img src="placeholder.png" alt="placeholder" />
         </div>
 
-        <div class="subtitle-section">
+        <div class="header-section">
             <p>Outputs: Renderings</p>
         </div>
 
         <div class="image-section">
-            <img src="interior-1-final-edit.png" alt="placeholder" />
+            <img src="rendering-annotation.png" alt="placeholder" />
         </div>
 
         <div class="image-section">
@@ -81,18 +81,60 @@
         </div>
 
         <div class="image-section">
-            <img src="placeholder.png" alt="placeholder" />
+            <img src="circuit board-with mycelium.png" alt="placeholder" />
         </div>
 
-        <div class="subtitle-section">
+
+        <div class="video-overlay-section">
+            <img src="circuit board.png" class="base-image" alt="Base image" />
+            <img src="DLA-trans.gif" class="overlay-gif" alt="Animation overlay" />
+        </div>
+
+        <div class="header-section">
             <p>Outputs: Software</p>
         </div>
 
-        <div class="image-section">
-            <img src="placeholder.png" alt="placeholder" />
+        <!-- NEW SENSOR DATA STREAM SECTION -->
+
+        <div class="sensor-stream-section">
+            <div class="data-display" id="dataContainer">
+                <div class="data-line header" style="opacity: 1;">Initializing sensor array...</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Temperature</div>
+                    <div class="stat-value" id="tempValue">--</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="tempProgress"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Humidity</div>
+                    <div class="stat-value" id="humidValue">--</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="humidProgress"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Mycelium</div>
+                    <div class="stat-value" id="myceliumValue">--</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="myceliumProgress"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Light</div>
+                    <div class="stat-value" id="lightValue">--</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="lightProgress"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
 <!--Link to JS-->
         <script src="main.js"></script>
+        <script src="sensor-stream.js"></script>
     </body>

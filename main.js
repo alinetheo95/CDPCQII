@@ -96,10 +96,12 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// New fade section after GIFs
+// New fade section after GIFs with discrete scrolling
 const fadeSection2 = document.querySelector('.fade-scroll-section-2');
 const fadeLayers2 = document.querySelectorAll('.fade-layer-2');
-const nextSubtitle = document.querySelector('.fade-scroll-section-2 + .subtitle-section'); // Select the subtitle after fade section
+const nextSubtitle = document.querySelector('.fade-scroll-section-2 + .subtitle-section');
+
+let currentLayerIndex = -1;
 
 window.addEventListener('scroll', () => {
     if (!fadeSection2) return;
@@ -110,18 +112,28 @@ window.addEventListener('scroll', () => {
     
     const progress = (scrollPos - sectionTop) / sectionHeight;
     
-    console.log('Fade Section 2 Progress:', progress);
+    // Calculate which layer should be visible based on progress
+    const targetLayer = Math.floor(progress * fadeLayers2.length);
     
-    // Fade in layers as you scroll through the section
-    fadeLayers2.forEach((layer, index) => {
-        const layerStart = index / fadeLayers2.length;
+    // Only update if we've moved to a different layer
+    if (targetLayer !== currentLayerIndex && targetLayer >= 0 && targetLayer < fadeLayers2.length) {
+        currentLayerIndex = targetLayer;
         
-        if (progress >= layerStart && progress <= 1) {
-            layer.classList.add('active');
-        } else if (progress < layerStart) {
-            layer.classList.remove('active');
-        }
-    });
+        // Show all layers up to and including current layer
+        fadeLayers2.forEach((layer, index) => {
+            if (index <= currentLayerIndex) {
+                layer.classList.add('active');
+            } else {
+                layer.classList.remove('active');
+            }
+        });
+    }
+    
+    // Hide all if before or after section
+    if (progress < 0 || progress >= 1) {
+        fadeLayers2.forEach(layer => layer.classList.remove('active'));
+        currentLayerIndex = -1;
+    }
     
     // Fade out all layers when scrolling into the next subtitle section
     if (nextSubtitle) {
@@ -135,6 +147,36 @@ window.addEventListener('scroll', () => {
             fadeLayers2.forEach(layer => {
                 layer.style.opacity = opacity;
             });
+        } else {
+            // Reset opacity when not in fade-out zone
+            fadeLayers2.forEach(layer => {
+                if (layer.classList.contains('active')) {
+                    layer.style.opacity = 1;
+                }
+            });
         }
+    }
+});
+
+const videoOverlaySection = document.querySelector('.video-overlay-section');
+const baseImage = document.querySelector('.base-image');
+const overlayGif = document.querySelector('.overlay-gif');
+
+window.addEventListener('scroll', () => {
+    if (!videoOverlaySection) return;
+    
+    const sectionTop = videoOverlaySection.offsetTop;
+    const sectionHeight = videoOverlaySection.offsetHeight;
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    
+    const progress = (scrollPos - sectionTop) / sectionHeight;
+    
+    // Show both image and GIF together when in section
+    if (progress > 0 && progress < 1) {
+        baseImage.classList.add('active');
+        overlayGif.classList.add('active');
+    } else {
+        baseImage.classList.remove('active');
+        overlayGif.classList.remove('active');
     }
 });
