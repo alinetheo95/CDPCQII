@@ -30,24 +30,27 @@ body {
 
 .subtitle-section {
     padding-top: 0px;
-    margin-bottom: 200px;
+    margin-bottom: 20px;
     text-align: left;
     font-size: 2rem;
 }
 
 .image-section {
     margin: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-section img {
-    width: 100%;
+    width: 80%; /* Adjust percentage as needed */
     height: auto;
     display: block;
 }
 
 .fade-scroll-section {
     position: relative;
-    height: 200vh; /* Reduced since only 2 layers */
+    height: 200vh;
     margin: 80px 0;
 }
 
@@ -61,6 +64,8 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    z-index: 10;
+    max-height: 90vh;
 }
 
 .fade-layer.active {
@@ -68,8 +73,9 @@ body {
 }
 
 .layer-section {
+    position: relative;
+    height: 200vh;
     margin: 80px 0;
-    width: 100%;
 }
 
 .layer-section img {
@@ -94,7 +100,10 @@ body {
     height: auto;
     opacity: 0;
     transition: opacity 0.5s ease;
+    z-index: 1;
+    max-height: 90vh;
 }
+
 
 .background-grid.active {
     opacity: 1;
@@ -108,6 +117,7 @@ body {
     width: 40%; /* Adjust this to make bigger/smaller */
     opacity: 0;
     transition: opacity 0.5s ease;
+    max-height: 90vh;
 }
 
 .gif-container.active {
@@ -118,4 +128,28 @@ body {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.fade-scroll-section-2 {
+    position: relative;
+    height: 200vh;
+    margin: 80px 0;
+}
+
+.fade-layer-2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 10;
+    max-height: 90vh;
+}
+
+.fade-layer-2.active {
+    opacity: 1;
 }

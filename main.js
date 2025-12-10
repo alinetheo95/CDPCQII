@@ -95,3 +95,46 @@ window.addEventListener('scroll', () => {
         gifContainers[2].classList.add('active');
     }
 });
+
+// New fade section after GIFs
+const fadeSection2 = document.querySelector('.fade-scroll-section-2');
+const fadeLayers2 = document.querySelectorAll('.fade-layer-2');
+const nextSubtitle = document.querySelector('.fade-scroll-section-2 + .subtitle-section'); // Select the subtitle after fade section
+
+window.addEventListener('scroll', () => {
+    if (!fadeSection2) return;
+    
+    const sectionTop = fadeSection2.offsetTop;
+    const sectionHeight = fadeSection2.offsetHeight;
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    
+    const progress = (scrollPos - sectionTop) / sectionHeight;
+    
+    console.log('Fade Section 2 Progress:', progress);
+    
+    // Fade in layers as you scroll through the section
+    fadeLayers2.forEach((layer, index) => {
+        const layerStart = index / fadeLayers2.length;
+        
+        if (progress >= layerStart && progress <= 1) {
+            layer.classList.add('active');
+        } else if (progress < layerStart) {
+            layer.classList.remove('active');
+        }
+    });
+    
+    // Fade out all layers when scrolling into the next subtitle section
+    if (nextSubtitle) {
+        const subtitleTop = nextSubtitle.offsetTop;
+        const fadeOutStart = subtitleTop - window.innerHeight;
+        
+        if (scrollPos > fadeOutStart) {
+            const fadeProgress = (scrollPos - fadeOutStart) / (window.innerHeight / 2);
+            const opacity = Math.max(0, 1 - fadeProgress);
+            
+            fadeLayers2.forEach(layer => {
+                layer.style.opacity = opacity;
+            });
+        }
+    }
+});
