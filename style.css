@@ -49,7 +49,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 400px;
 }
 
 .image-section img {
@@ -407,6 +407,7 @@ body {
     gap: 40px;
     margin: 0 0 80px 0; /* Only bottom margin */
     padding: 0 40px;
+    margin-bottom: 200px;
 }
 
 .gif-container-side {
