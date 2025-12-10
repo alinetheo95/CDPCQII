@@ -21,6 +21,7 @@ body {
 .title-section {
     padding-top: 40px;
     margin-bottom: 0px;
+    text-align: center;
 }
 
 .title-section h1 {
@@ -398,4 +399,33 @@ body {
 
 .layered-photo.active {
     opacity: 1;
+}
+
+.side-by-side-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 0 0 80px 0; /* Only bottom margin */
+    padding: 0 40px;
+}
+
+.gif-container-side {
+    flex: 2;
+}
+
+.gif-container-side img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text-container-side {
+    flex: 1;
+    color: #cfcfcf;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+}
+
+.text-container-side p {
+    margin-bottom: 1em;
 }
