@@ -180,3 +180,59 @@ window.addEventListener('scroll', () => {
         overlayGif.classList.remove('active');
     }
 });
+
+const layeredPhotosSection = document.querySelector('.layered-photos-section');
+const layeredPhotos = document.querySelectorAll('.layered-photo');
+const nextSectionAfterPhotos = document.querySelector('.layered-photos-section + *'); // Select next element after photos
+
+let currentPhotoIndex = -1;
+
+window.addEventListener('scroll', () => {
+    if (!layeredPhotosSection) return;
+    
+    const sectionTop = layeredPhotosSection.offsetTop;
+    const sectionHeight = layeredPhotosSection.offsetHeight;
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    
+    const progress = (scrollPos - sectionTop) / sectionHeight;
+    
+    // Calculate which photo should be visible
+    const targetPhoto = Math.floor(progress * layeredPhotos.length);
+    
+    // Only update if we've moved to a different photo
+    if (targetPhoto !== currentPhotoIndex && targetPhoto >= 0 && targetPhoto < layeredPhotos.length) {
+        currentPhotoIndex = targetPhoto;
+        
+        // Show all photos up to and including current photo (they stack)
+        layeredPhotos.forEach((photo, index) => {
+            if (index <= currentPhotoIndex) {
+                photo.classList.add('active');
+            } else {
+                photo.classList.remove('active');
+            }
+        });
+    }
+    
+    // Hide all if before section
+    if (progress < 0) {
+        layeredPhotos.forEach(photo => photo.classList.remove('active'));
+        currentPhotoIndex = -1;
+    }
+    
+    // Fade out when approaching next section
+    if (nextSectionAfterPhotos && progress > 0.8) { // Start fading at 80% through section
+        const fadeProgress = (progress - 0.8) / 0.2; // Fade over last 20%
+        const opacity = Math.max(0, 1 - fadeProgress);
+        
+        layeredPhotos.forEach(photo => {
+            photo.style.opacity = opacity;
+        });
+    } else if (progress >= 0 && progress <= 0.8) {
+        // Reset opacity when not in fade-out zone
+        layeredPhotos.forEach(photo => {
+            if (photo.classList.contains('active')) {
+                photo.style.opacity = 1;
+            }
+        });
+    }
+});
