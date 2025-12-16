@@ -44,6 +44,13 @@ body {
     margin-top: 200px;
 }
 
+.text-section{
+    text-align: left;
+    color: #cfcfcf;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6
+}
+
 .image-section {
     margin: 80px 0;
     display: flex;
@@ -345,6 +352,7 @@ body {
     position: relative;
     height: 150vh; /* Reduced since both appear at once */
     margin: 80px 0;
+    margin-top: 300px;
 }
 
 .base-image {
